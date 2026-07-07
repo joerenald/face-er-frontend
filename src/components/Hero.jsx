@@ -119,9 +119,7 @@ setProgress(35);
 setLoadingMessage("Scanning Human Face...");
   try {
 
-    const response = await fetch(
-      "https://face-er-backend-1.onrender.com/detect",
-      {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/detect`, {
         method: "POST",
         body: formData,
       }
