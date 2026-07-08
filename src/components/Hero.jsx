@@ -374,13 +374,32 @@ width:`${progress}%`
 
           <div className="result-container">
            <motion.div
-  key={emotion}
-  className="emotion-emoji"
-  initial={{ scale: 0 }}
-  animate={{ scale: 1.2 }}
-  transition={{ duration: 0.4 }}
+className="emotion-emoji"
+
+key={emotion}
+
+initial={{
+scale:0,
+rotate:-30,
+opacity:0
+}}
+
+animate={{
+scale:[1,1.18,1],
+y:[0,-10,0],
+rotate:[0,8,-8,0],
+opacity:1
+}}
+
+transition={{
+duration:1.2,
+repeat:Infinity,
+repeatDelay:1
+}}
 >
-  {emotionEmojis[emotion] || "😊"}
+
+{emotionEmojis[emotion]}
+
 </motion.div>
 
           <h2
@@ -407,6 +426,7 @@ width:`${progress}%`
             </div>
           </div>
         </motion.div>
+        
       </div>
     </section>
   );
