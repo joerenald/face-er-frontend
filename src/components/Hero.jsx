@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 const Hero = () => {
+  const [displayImage, setDisplayImage] = useState(null);
   const [loadingMessage, setLoadingMessage] = useState("");
 const [progress, setProgress] = useState(0);
   const [emotion, setEmotion] = useState("Ready");
@@ -33,6 +34,7 @@ const handleImageUpload = (e) => {
   const imageUrl = URL.createObjectURL(file);
 
   setImage(imageUrl);
+setDisplayImage(imageUrl);
   setResultImage(null);
   setEmotion("Ready");
   setConfidence(0);
@@ -83,6 +85,7 @@ const handleImageUpload = (e) => {
     const imageData = canvas.toDataURL("image/png");
 
     setImage(imageData);
+setDisplayImage(imageData);
     setResultImage(null);
     canvas.toBlob((blob) => {
   const file = new File(
@@ -134,7 +137,16 @@ setLoadingMessage("Running Emotion Classification...");
     if (data.success) {
       setEmotion(data.emotion);
       setConfidence(data.confidence);
-      setResultImage(data.image);
+      const backendImage = data.image + "?t=" + Date.now();
+
+const img = new Image();
+
+img.onload = () => {
+    setResultImage(backendImage);
+    setDisplayImage(backendImage);
+};
+
+img.src = backendImage;
     } else {
       alert(data.message);
     }
@@ -273,11 +285,11 @@ const currentColor =
     boxShadow: `0 0 25px ${currentColor}66`,
   }}
 >
-                 <img
-    src={resultImage || image}
-                    alt="Preview"
-                    className="preview-image"
-                  />
+                <img
+    src={displayImage}
+    alt="Preview"
+    className="preview-image"
+/>
                 </div>
               ) : (
                 <div
