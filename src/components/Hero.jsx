@@ -134,7 +134,7 @@ setLoadingMessage("Running Emotion Classification...");
     if (data.success) {
       setEmotion(data.emotion);
       setConfidence(data.confidence);
-      setResultImage(data.image + "?t=" + new Date().getTime());
+      setResultImage(data.image);
     } else {
       alert(data.message);
     }
