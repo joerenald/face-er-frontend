@@ -121,7 +121,8 @@ await new Promise(resolve => setTimeout(resolve, 500));
 setProgress(35);
 setLoadingMessage("Scanning Human Face...");
   try {
-
+    console.log("API URL:", import.meta.env.VITE_API_URL);
+    console.log("Request URL:", `${import.meta.env.VITE_API_URL}/detect`);
     const response = await fetch(`${import.meta.env.VITE_API_URL}/detect`, {
         method: "POST",
         body: formData,
