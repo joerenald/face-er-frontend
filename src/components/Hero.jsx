@@ -129,7 +129,11 @@ setLoadingMessage("Scanning Human Face...");
     );
 setProgress(70);
 setLoadingMessage("Extracting Facial Landmarks...");
-    const data = await response.json();
+    if (!response.ok) {
+  throw new Error("Server error");
+}
+
+const data = await response.json();
 await new Promise(resolve => setTimeout(resolve, 400));
 
 setProgress(90);
