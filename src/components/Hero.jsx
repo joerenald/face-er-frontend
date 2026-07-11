@@ -142,7 +142,7 @@ setLoadingMessage("Running Emotion Classification...");
     if (data.success) {
       setEmotion(data.emotion);
       setConfidence(data.confidence);
-      const backendImage = data.image + "?t=" + Date.now();
+      const backendImage = data.image;
 
 const img = new Image();
 
